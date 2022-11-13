@@ -54,4 +54,15 @@ public class Product {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "ID-Producto=" + productID +
+                ", nombre='" + name + '\'' +
+                ", precio=" + price +
+                "€, ID-Categoría=" + categoryID +
+                ", categoría='" + category + '\'' +
+                '}';
+    }
 }

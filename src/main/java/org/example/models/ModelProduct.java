@@ -3,6 +3,7 @@ package org.example.models;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ModelProduct {
 
@@ -29,10 +30,10 @@ public class ModelProduct {
 
     public void update(Connector connection1) {
 
-        String sentenciasql = "update productos set nombre= ?, precio = ? where nombre = ?";
+        String sqlSentences = "update productos set nombre= ?, precio = ? where nombre = ?";
         PreparedStatement sentencia = null;
         try {
-            sentencia = connection1.getConnection().prepareStatement(sentenciasql);
+            sentencia = connection1.getConnection().prepareStatement(sqlSentences);
             sentencia.setString(1,"Tomate");
             sentencia.setFloat(2,5);
             sentencia.setString(3,"Arroz");
@@ -52,10 +53,10 @@ public class ModelProduct {
 
     public void insert(Connector connection1) {
 
-        String sentenciasql = "insert into productos (Nombre, Precio, Cantidad) values (?, ?, ?)";
+        String sqlSentences = "insert into productos (Nombre, Precio, Cantidad) values (?, ?, ?)";
         PreparedStatement sentencia = null;
         try {
-            sentencia = connection1.getConnection().prepareStatement(sentenciasql);
+            sentencia = connection1.getConnection().prepareStatement(sqlSentences);
             sentencia.setString(1,"Tomate");
             sentencia.setFloat(2,5);
             sentencia.setInt(3,6);
@@ -74,10 +75,10 @@ public class ModelProduct {
     }
 
     public void delete(Connector connection1){
-        String sentenciasql = "delete from productos where nombre = ?";
+        String sqlSentences = "delete from productos where nombre = ?";
         PreparedStatement sentencia = null;
         try {
-            sentencia = connection1.getConnection().prepareStatement(sentenciasql);
+            sentencia = connection1.getConnection().prepareStatement(sqlSentences);
             sentencia.setString(1,"Tomate");
             sentencia.executeUpdate();
         } catch (SQLException e) {
@@ -94,11 +95,11 @@ public class ModelProduct {
     }
 
     public void select(Connector connection1){
-        String sentenciasql = "select * from productos where nombre = ?";
+        String sqlSentences = "select * from productos where nombre = ?";
         PreparedStatement sentencia = null;
-        ResultSet resultSet = null;
+        ResultSet resultSet;
         try {
-            sentencia = connection1.getConnection().prepareStatement(sentenciasql);
+            sentencia = connection1.getConnection().prepareStatement(sqlSentences);
             sentencia.setString(1,"Tomate");
             resultSet = sentencia.executeQuery();
             while (resultSet.next()){
@@ -117,8 +118,9 @@ public class ModelProduct {
         }
     }
 
-    public static void selectAll(Connector connection1){
-        String sentenceSQLProducts = "select * from productos";
-        String sentenceSQLCategories = "select * from productos";
+    public static ResultSet executeSelect() throws SQLException {
+        String query = "select *,(select Categoria from categorias where CategoriaID = productos.CategoriaID) as Categoria from productos";
+        Statement stmt = connector.getConnection().createStatement();
+        return stmt.executeQuery(query);
     }
 }
