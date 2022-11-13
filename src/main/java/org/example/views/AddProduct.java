@@ -48,7 +48,7 @@ public class AddProduct extends JDialog {
     }
 
     private void onOK() {
-        if (!textField1.getText().isBlank() && !textField2.getText().isBlank() && !textField3.getText().isBlank()) {
+        if (!ProductController.checkBlank(textField1.getText(),textField2.getText(),textField3.getText())) {
             if (textField1.getText().length() >= 3) {
                 if (ProductController.checkName(textField1.getText())) {
                     if (!ProductController.checkCategory(textField3.getText())){

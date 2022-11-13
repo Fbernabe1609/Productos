@@ -78,7 +78,7 @@ public class ModelProduct {
         PreparedStatement sentence = null;
         try {
             sentence = connector.getConnection().prepareStatement(sqlSentences);
-            sentence.setString(1,"name");
+            sentence.setString(1,name);
             sentence.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Ha ocurrido el siguiente error: " + e);
@@ -112,7 +112,6 @@ public class ModelProduct {
             sentence = connector.getConnection().prepareStatement(sqlSentences);
             sentence.setString(1,data);
             resultSet = sentence.executeQuery();
-            System.out.println(resultSet);
             if (!resultSet.next()) {
                 select = true;
             }

@@ -5,30 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d08a8ec6-ca53-46d3-acbc-e018bd5930db" name="Changes" comment="Avance casa">
-      <change afterPath="$PROJECT_DIR$/src/dbFile/productosisaac.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dbFile/productosisaac.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/dbFile/productosisaac.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/ModelProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/ModelProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/views/AddProduct.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/views/AddProduct.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/views/AddProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/views/AddProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/views/DeleteProduct.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/views/DeleteProduct.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/views/DeleteProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/views/DeleteProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/views/EditProduct.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/views/EditProduct.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/views/EditProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/views/EditProduct.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/views/ProductsViews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/views/ProductsViews.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/views/StartViews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/views/StartViews.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/example/controllers/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/controllers/ProductController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/example/models/ModelProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/models/ModelProduct.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/DeleteProduct$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/DeleteProduct$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/DeleteProduct$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/DeleteProduct$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/DeleteProduct$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/DeleteProduct$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/DeleteProduct$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/DeleteProduct$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/DeleteProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/DeleteProduct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/EditProduct$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/EditProduct$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/EditProduct$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/EditProduct$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/EditProduct$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/EditProduct$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/EditProduct$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/EditProduct$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/EditProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/EditProduct.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews$6.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/ProductsViews.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/views/StartViews.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/views/StartViews.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1668273246776</updated>
       <workItem from="1668273248244" duration="11354000" />
-      <workItem from="1668329092042" duration="26503000" />
+      <workItem from="1668329092042" duration="27878000" />
     </task>
     <task id="LOCAL-00001" summary="Avance casa">
       <created>1668296231235</created>
@@ -132,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668368269903</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Avance casa">
+      <created>1668377802013</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1668377802013</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

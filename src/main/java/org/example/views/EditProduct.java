@@ -1,5 +1,7 @@
 package org.example.views;
 
+import org.example.controllers.ProductController;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -44,7 +46,36 @@ public class EditProduct extends JDialog {
     }
 
     private void onOK() {
-        dispose();
+        if (!ProductController.checkBlank(textField1.getText(),textField2.getText())){
+            if (!ProductController.checkName(textField1.getText())) {
+                try {
+                    String textCheck = "asw";
+                    if (textField2.getText().contains(".")) {
+                        textCheck = textField2.getText().substring(textField2.getText().indexOf("."));
+                    }
+                    if (textCheck.length() <=3) {
+                        float price = Float.parseFloat(textField2.getText());
+                        if (price > 0.0) {
+                            ProductController.updateProducts(textField1.getText(), price);
+                            JOptionPane.showMessageDialog(this, "Producto actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                            ProductsViews.endDialogResults = true;
+                            dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Introduzca un precio válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Introduzca un precio válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Ha ocurrido el siguiente error: " + e);
+                    JOptionPane.showMessageDialog(this, "Introduzca un precio válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No existe ese producto.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Completa todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void onCancel() {

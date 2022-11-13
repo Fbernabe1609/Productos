@@ -1,5 +1,7 @@
 package org.example.views;
 
+import org.example.controllers.ProductController;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -42,7 +44,18 @@ public class DeleteProduct extends JDialog {
     }
 
     private void onOK() {
-        dispose();
+        if (!ProductController.checkBlank(textField1.getText())){
+            if (!ProductController.checkName(textField1.getText())) {
+                ProductController.deleteProducts(textField1.getText());
+                JOptionPane.showMessageDialog(this, "Producto borrado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                ProductsViews.endDialogResults = true;
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "El producto no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Completa todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void onCancel() {

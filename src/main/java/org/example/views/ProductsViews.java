@@ -63,6 +63,12 @@ public class ProductsViews {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DeleteProduct.start();
+                if (endDialogResults){
+                    tablePanel.removeAll();
+                    tablePanel.updateUI();
+                    tablePanel.add(createTable(defaultTableModel, size));
+                    endDialogResults = false;
+                }
             }
         });
         addButton.addActionListener(new ActionListener() {
@@ -81,6 +87,12 @@ public class ProductsViews {
             @Override
             public void actionPerformed(ActionEvent e) {
                 EditProduct.start();
+                if (endDialogResults){
+                    tablePanel.removeAll();
+                    tablePanel.updateUI();
+                    tablePanel.add(createTable(defaultTableModel, size));
+                    endDialogResults = false;
+                }
             }
         });
 
@@ -99,7 +111,7 @@ public class ProductsViews {
 
         for (int i = 0; i < ProductController.createProducts().size(); i++) {
             defaultTableModel.addRow(new Object[] {ProductController.createProducts().get(i).getProductID(),
-                    ProductController.createProducts().get(i).getName(),
+                    ProductController.createProducts().get(i).getName().toUpperCase(),
                     ProductController.createProducts().get(i).getPrice(),
                     ProductController.createProducts().get(i).getCategoryID(),
                     ProductController.createProducts().get(i).getCategory()

@@ -35,4 +35,31 @@ public class ProductController {
     public static boolean checkCategory(String category) {
         return ModelProduct.selectCategory(category);
     }
+
+    public static void deleteProducts(String name) {
+        ModelProduct.delete(name);
+    }
+
+    public static void updateProducts(String name, float price) {
+        ModelProduct.update(price, name);
+    }
+
+    public static boolean checkBlank(String data1){
+        return data1.isBlank();
+    }
+    public static boolean checkBlank(String data1, String data2){
+        boolean result = false;
+        if (data1.isBlank() || data2.isBlank()) {
+            result =true;
+        }
+        return  result;
+    }
+
+    public static boolean checkBlank(String data1, String data2, String data3){
+        boolean result = false;
+        if (data1.isBlank() || data2.isBlank() || data3.isBlank()) {
+            result =true;
+        }
+        return  result;
+    }
 }
