@@ -24,11 +24,15 @@ public class ProductController {
         return products;
     }
 
-    public static int createProductID(){
-        return products.size() + 1;
+    public static void insertProducts(String name, float price, String category) {
+        ModelProduct.insert(name, price, category);
     }
 
-    public static void insertProducts() {
+    public static boolean checkName(String name) {
+        return ModelProduct.selectProduct(name);
+    }
 
+    public static boolean checkCategory(String category) {
+        return ModelProduct.selectCategory(category);
     }
 }

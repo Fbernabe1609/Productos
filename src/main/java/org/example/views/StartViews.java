@@ -4,9 +4,10 @@ import javax.swing.*;
 
 public class StartViews {
 
+    private static JFrame appFrame = new JFrame("Productos");
+
     public static void startViews() {
 
-        JFrame appFrame = new JFrame("Productos");
         appFrame.setContentPane(new ProductsViews().getBodyPanel());
         appFrame.pack();
         appFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -14,5 +15,9 @@ public class StartViews {
         appFrame.setResizable(false);
         appFrame.setSize(750, 500);
         appFrame.setLocationRelativeTo(null);
+    }
+
+    public static JFrame getAppFrame() {
+        return appFrame;
     }
 }

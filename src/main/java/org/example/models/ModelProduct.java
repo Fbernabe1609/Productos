@@ -28,94 +28,102 @@ public class ModelProduct {
         }
     }
 
-    public void update(Connector connection1) {
+    public static void update(float price, String name) {
 
-        String sqlSentences = "update productos set nombre= ?, precio = ? where nombre = ?";
-        PreparedStatement sentencia = null;
+        String sqlSentences = "update productos set precio = ? where nombre = ?";
+        PreparedStatement sentence = null;
         try {
-            sentencia = connection1.getConnection().prepareStatement(sqlSentences);
-            sentencia.setString(1,"Tomate");
-            sentencia.setFloat(2,5);
-            sentencia.setString(3,"Arroz");
-            sentencia.executeUpdate();
+            sentence = connector.getConnection().prepareStatement(sqlSentences);
+            sentence.setFloat(1,price);
+            sentence.setString(2,name);
+            sentence.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            if (sentencia != null) {
+            if (sentence != null) {
                 try {
-                    sentencia.close();
+                    sentence.close();
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    System.out.println("Ha ocurrido el siguiente error: " + e);
                 }
             }
         }
     }
 
-    public void insert(Connector connection1) {
+    public static void insert(String name, float price, String category) {
 
-        String sqlSentences = "insert into productos (Nombre, Precio, Cantidad) values (?, ?, ?)";
-        PreparedStatement sentencia = null;
+        String sqlSentences = "insert into productos (Nombre, Precio, CategoriaID) values (?, ?, (select CategoriaID from categorias where Categoria = ?))";
+        PreparedStatement sentence = null;
         try {
-            sentencia = connection1.getConnection().prepareStatement(sqlSentences);
-            sentencia.setString(1,"Tomate");
-            sentencia.setFloat(2,5);
-            sentencia.setInt(3,6);
-            sentencia.executeUpdate();
+            sentence = connector.getConnection().prepareStatement(sqlSentences);
+            sentence.setString(1,name);
+            sentence.setFloat(2,price);
+            sentence.setString(3,category);
+            sentence.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Ha ocurrido el siguiente error: " + e);
         } finally {
-            if (sentencia != null) {
+            if (sentence != null) {
                 try {
-                    sentencia.close();
+                    sentence.close();
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    System.out.println("Ha ocurrido el siguiente error: " + e);
                 }
             }
         }
     }
 
-    public void delete(Connector connection1){
+    public static void delete(String name){
         String sqlSentences = "delete from productos where nombre = ?";
-        PreparedStatement sentencia = null;
+        PreparedStatement sentence = null;
         try {
-            sentencia = connection1.getConnection().prepareStatement(sqlSentences);
-            sentencia.setString(1,"Tomate");
-            sentencia.executeUpdate();
+            sentence = connector.getConnection().prepareStatement(sqlSentences);
+            sentence.setString(1,"name");
+            sentence.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Ha ocurrido el siguiente error: " + e);
         } finally {
-            if (sentencia != null) {
+            if (sentence != null) {
                 try {
-                    sentencia.close();
+                    sentence.close();
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    System.out.println("Ha ocurrido el siguiente error: " + e);
                 }
             }
         }
     }
 
-    public void select(Connector connection1){
-        String sqlSentences = "select * from productos where nombre = ?";
-        PreparedStatement sentencia = null;
+    public static boolean selectProduct(String data){
+        String sqlSentences = "select * from productos where Nombre = ?";
+        return selection(data, sqlSentences);
+    }
+
+    public static boolean selectCategory(String data){
+        String sqlSentences = "select * from categorias where Categoria = ?";
+        return selection(data, sqlSentences);
+    }
+
+    public static boolean selection(String data, String sqlSentences) {
+        PreparedStatement sentence = null;
         ResultSet resultSet;
+        boolean select = false;
+
         try {
-            sentencia = connection1.getConnection().prepareStatement(sqlSentences);
-            sentencia.setString(1,"Tomate");
-            resultSet = sentencia.executeQuery();
-            while (resultSet.next()){
-                System.out.println("Nombre: " + resultSet.getString(2) + "\nPrecio: " + resultSet.getFloat(3) + "\nCantidad: " + resultSet.getInt(4));
+            sentence = connector.getConnection().prepareStatement(sqlSentences);
+            sentence.setString(1,data);
+            resultSet = sentence.executeQuery();
+            System.out.println(resultSet);
+            if (!resultSet.next()) {
+                select = true;
+            }
+            sentence.close();
+            if (resultSet != null) {
+                resultSet.close();
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            if (sentencia != null) {
-                try {
-                    sentencia.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+            System.out.println("Ha ocurrido el siguiente error: " + e);
         }
+        return select;
     }
 
     public static ResultSet executeSelect() throws SQLException {

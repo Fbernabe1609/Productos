@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-11-2022 a las 00:20:03
+-- Tiempo de generación: 13-11-2022 a las 20:42:12
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -28,32 +28,32 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categorias` (
-  `Categoria` varchar(255) DEFAULT NULL,
-  `ID` int(11) NOT NULL
+  `CategoriaID` int(11) NOT NULL,
+  `Categoria` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `categorias`
 --
 
-INSERT INTO `categorias` (`Categoria`, `ID`) VALUES
-('Ropa', 1),
-('Higiene', 2),
-('Alimentacion', 3),
-('Videojuegos', 4),
-('Mobiliario', 5),
-('Juguetes', 6),
-('Cosmeticos', 7),
-('Informatica y electronica', 8),
-('Mascotas', 9),
-('Salud', 10),
-('Electrodomesticos', 11),
-('Libros', 12),
-('Cine', 13),
-('Música', 14),
-('Papeleria', 15),
-('Calzado', 16),
-('Bisuteria', 17);
+INSERT INTO `categorias` (`CategoriaID`, `Categoria`) VALUES
+(1, 'Ropa'),
+(2, 'Higiene'),
+(3, 'Alimentacion'),
+(4, 'Videojuegos'),
+(5, 'Mobiliario'),
+(6, 'Juguetes'),
+(7, 'Cosmeticos'),
+(8, 'Informatica y electronica'),
+(9, 'Mascotas'),
+(10, 'Salud'),
+(11, 'Electrodomesticos'),
+(12, 'Libros'),
+(13, 'Cine'),
+(14, 'Música'),
+(15, 'Papeleria'),
+(16, 'Calzado'),
+(17, 'Bisuteria');
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,7 @@ INSERT INTO `categorias` (`Categoria`, `ID`) VALUES
 --
 
 CREATE TABLE `productos` (
-  `ID` int(11) NOT NULL,
+  `ProductoID` int(11) NOT NULL,
   `Nombre` varchar(255) NOT NULL,
   `Precio` float NOT NULL,
   `CategoriaID` int(11) NOT NULL
@@ -72,7 +72,7 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`ID`, `Nombre`, `Precio`, `CategoriaID`) VALUES
+INSERT INTO `productos` (`ProductoID`, `Nombre`, `Precio`, `CategoriaID`) VALUES
 (1, 'Tomate', 3.5, 3),
 (2, 'Arroz', 8, 3),
 (3, 'Paracetamol', 10.25, 10),
@@ -85,7 +85,7 @@ INSERT INTO `productos` (`ID`, `Nombre`, `Precio`, `CategoriaID`) VALUES
 (10, 'Mesa de cocina', 119.99, 5),
 (11, 'Muñeca Nancy', 35.5, 6),
 (12, 'Pinta uñas azul', 10, 7),
-(13, 'Ratón inalambrico NISU', 4.99, 8),
+(13, 'Ratón inalámbrico NISU', 4.99, 8),
 (14, 'Comida para perros', 27.8, 9),
 (15, 'Lavadora LG 5KG', 326.75, 11),
 (16, 'Manga 1 Naruto', 7.45, 12),
@@ -113,9 +113,9 @@ INSERT INTO `productos` (`ID`, `Nombre`, `Precio`, `CategoriaID`) VALUES
 (38, 'Spinner blanco', 1.2, 6),
 (39, 'Spinner rojo', 1.2, 6),
 (40, 'Spinner negro', 1.2, 6),
-(41, 'Spinner ', 1.2, 6),
+(41, 'Spinner marrón', 1.2, 6),
 (42, 'Spinner azul', 1.2, 6),
-(43, 'Spinner ', 1.2, 6),
+(43, 'Spinner cian', 1.2, 6),
 (44, 'Spinner amarillo', 1.2, 6),
 (45, 'Spinner verde', 1.2, 6),
 (46, 'Spinner rosa', 1.2, 6),
@@ -124,7 +124,7 @@ INSERT INTO `productos` (`ID`, `Nombre`, `Precio`, `CategoriaID`) VALUES
 (49, 'Libreta cuadros Oxford negra', 6.35, 15),
 (50, 'Libreta cuadros Oxford amarilla', 6.35, 15),
 (51, 'Libreta cuadros Oxford naranja', 6.35, 15),
-(52, 'Comida para perros', 17.8, 9),
+(52, 'Comida para gatos', 17.8, 9),
 (53, 'Metformina 850g', 15, 10),
 (54, 'Apiretal', 5.25, 10),
 (55, 'Gelocatil', 10, 10),
@@ -144,13 +144,14 @@ INSERT INTO `productos` (`ID`, `Nombre`, `Precio`, `CategoriaID`) VALUES
 -- Indices de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`CategoriaID`);
 
 --
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD PRIMARY KEY (`ID`),
+  ADD PRIMARY KEY (`ProductoID`),
+  ADD UNIQUE KEY `Nombre` (`Nombre`),
   ADD KEY `FK_CategoriaID` (`CategoriaID`);
 
 --
@@ -158,16 +159,10 @@ ALTER TABLE `productos`
 --
 
 --
--- AUTO_INCREMENT de la tabla `categorias`
---
-ALTER TABLE `categorias`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `ProductoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- Restricciones para tablas volcadas
@@ -177,7 +172,7 @@ ALTER TABLE `productos`
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD CONSTRAINT `FK_CategoriaID` FOREIGN KEY (`CategoriaID`) REFERENCES `categorias` (`ID`);
+  ADD CONSTRAINT `FK_CategoriaID` FOREIGN KEY (`CategoriaID`) REFERENCES `categorias` (`CategoriaID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
