@@ -130,4 +130,51 @@ public class ModelProduct {
         Statement stmt = connector.getConnection().createStatement();
         return stmt.executeQuery(query);
     }
+
+    public static ResultSet filterSelect(float data1, float data2) {
+        String sqlSentences = "select * from productos where nombre betweem  ? and ?";
+        ResultSet resultSet = null;
+        PreparedStatement sentence = null;
+        try {
+            sentence = connector.getConnection().prepareStatement(sqlSentences);
+            sentence.setFloat(1,data1);
+            sentence.setFloat(2,data2);
+            resultSet = sentence.executeQuery();
+        } catch (SQLException e) {
+            System.out.println("Ha ocurrido el siguiente error: " + e);
+        } finally {
+            if (sentence != null) {
+                try {
+                    sentence.close();
+                } catch (SQLException e) {
+                    System.out.println("Ha ocurrido el siguiente error: " + e);
+                }
+            }
+        }
+        return resultSet;
+    }
 }
+//filterButton.addActionListener(new ActionListener() {
+//@Override
+//public void actionPerformed(ActionEvent e) {
+//        products = FiltersProduct.start();
+//        int size2 = products.size();
+//        if (endDialogResults){
+//        tablePanel.removeAll();
+//        tablePanel.updateUI();
+//        tablePanel.add(createTable(defaultTableModel, size2, products));
+//        endDialogResults = false;
+//        tablePanel.updateUI();
+//        }
+//        }
+//        });
+
+//resetFiltersButton.addActionListener(new ActionListener() {
+//@Override
+//public void actionPerformed(ActionEvent e) {
+//        tablePanel.removeAll();
+//        tablePanel.updateUI();
+//        tablePanel.add(createTable(defaultTableModel, size,ProductController.createProducts()));
+//        tablePanel.updateUI();
+//        }
+//        });

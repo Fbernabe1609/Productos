@@ -62,4 +62,17 @@ public class ProductController {
         }
         return  result;
     }
+
+    public static ArrayList<Product> filter(float data1, float data2) {
+        products.clear();
+        try {
+            ResultSet resultSet = ModelProduct.filterSelect(data1,data2);
+            while (resultSet.next()) {
+                products.add(new Product(resultSet.getInt(1),resultSet.getString(2),resultSet.getFloat(3),resultSet.getInt(4),resultSet.getString(5)));
+            }
+        } catch (SQLException e) {
+            System.out.println("Ha ocurrido el siguiente error: " + e);
+        }
+        return products;
+    }
 }

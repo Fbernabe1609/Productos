@@ -2,6 +2,7 @@ package org.example.views;
 
 import org.example.controllers.ProductController;
 import org.example.models.ModelProduct;
+import org.example.models.Product;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.EventObject;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
@@ -29,14 +31,84 @@ public class ProductsViews {
     private JButton deleteButton;
     private JPanel buttonsPanel;
     private JLabel logoLabel;
+    private JButton filterButton;
+    private JButton resetFiltersButton;
 
     static Boolean endDialogResults = false;
 
     private TableRowSorter<TableModel> orderModel;
 
+    private ArrayList<Product> products;
+
     public ProductsViews() {
 
         ModelProduct.startConnection();
+
+
+        tablePanel.add(createTable());
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DeleteProduct.start();
+                if (endDialogResults){
+                    tablePanel.removeAll();
+                    tablePanel.updateUI();
+                    tablePanel.add(createTable());
+                    endDialogResults = false;
+                }
+            }
+        });
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddProduct.start();
+                if (endDialogResults){
+                    tablePanel.removeAll();
+                    tablePanel.updateUI();
+                    tablePanel.add(createTable());
+                    endDialogResults = false;
+                }
+            }
+        });
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EditProduct.start();
+                if (endDialogResults){
+                    tablePanel.removeAll();
+                    tablePanel.updateUI();
+                    tablePanel.add(createTable());
+                    endDialogResults = false;
+                }
+            }
+        });
+
+        filterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                products = FiltersProduct.start();
+                if (endDialogResults){
+                    tablePanel.removeAll();
+                    tablePanel.updateUI();
+                    tablePanel.add(createTable());
+                    endDialogResults = false;
+                }
+            }
+        });
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                ModelProduct.stopConnection();
+            }
+        });
+    }
+
+    public JPanel getBodyPanel() {
+        return bodyPanel;
+    }
+
+    public JScrollPane createTable() {
+
         DefaultTableModel defaultTableModel =new DefaultTableModel() {
             @Override
             public Class getColumnClass(int columna) {
@@ -55,59 +127,6 @@ public class ProductsViews {
         defaultTableModel.addColumn("Precio");
         defaultTableModel.addColumn("ID Categoría");
         defaultTableModel.addColumn("Categoría");
-
-        int size = ProductController.createProducts().size();
-
-        tablePanel.add(createTable(defaultTableModel, size));
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DeleteProduct.start();
-                if (endDialogResults){
-                    tablePanel.removeAll();
-                    tablePanel.updateUI();
-                    tablePanel.add(createTable(defaultTableModel, size));
-                    endDialogResults = false;
-                }
-            }
-        });
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AddProduct.start();
-                if (endDialogResults){
-                    tablePanel.removeAll();
-                    tablePanel.updateUI();
-                    tablePanel.add(createTable(defaultTableModel, size));
-                    endDialogResults = false;
-                }
-            }
-        });
-        editButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                EditProduct.start();
-                if (endDialogResults){
-                    tablePanel.removeAll();
-                    tablePanel.updateUI();
-                    tablePanel.add(createTable(defaultTableModel, size));
-                    endDialogResults = false;
-                }
-            }
-        });
-
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                ModelProduct.stopConnection();
-            }
-        });
-    }
-
-    public JPanel getBodyPanel() {
-        return bodyPanel;
-    }
-
-    public JScrollPane createTable(DefaultTableModel defaultTableModel, int size) {
 
         for (int i = 0; i < ProductController.createProducts().size(); i++) {
             defaultTableModel.addRow(new Object[] {ProductController.createProducts().get(i).getProductID(),
