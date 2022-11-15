@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ModelProduct {
 
@@ -131,8 +132,8 @@ public class ModelProduct {
         return stmt.executeQuery(query);
     }
 
-    public static ResultSet filterSelect(float data1, float data2) {
-        String sqlSentences = "select * from productos where nombre betweem  ? and ?";
+    public static ArrayList<Product> filterSelect(float data1, float data2, ArrayList<Product> products) {
+        String sqlSentences = "select *, (select Categoria from categorias where CategoriaID = productos.CategoriaID) from productos where precio between ? and ?";
         ResultSet resultSet = null;
         PreparedStatement sentence = null;
         try {
@@ -140,6 +141,10 @@ public class ModelProduct {
             sentence.setFloat(1,data1);
             sentence.setFloat(2,data2);
             resultSet = sentence.executeQuery();
+            while (resultSet.next()) {
+                products.add(new Product(resultSet.getInt(1),resultSet.getString(2),resultSet.getFloat(3),resultSet.getInt(4),resultSet.getString(5)));
+            }
+            resultSet.close();
         } catch (SQLException e) {
             System.out.println("Ha ocurrido el siguiente error: " + e);
         } finally {
@@ -151,30 +156,6 @@ public class ModelProduct {
                 }
             }
         }
-        return resultSet;
+        return products;
     }
 }
-//filterButton.addActionListener(new ActionListener() {
-//@Override
-//public void actionPerformed(ActionEvent e) {
-//        products = FiltersProduct.start();
-//        int size2 = products.size();
-//        if (endDialogResults){
-//        tablePanel.removeAll();
-//        tablePanel.updateUI();
-//        tablePanel.add(createTable(defaultTableModel, size2, products));
-//        endDialogResults = false;
-//        tablePanel.updateUI();
-//        }
-//        }
-//        });
-
-//resetFiltersButton.addActionListener(new ActionListener() {
-//@Override
-//public void actionPerformed(ActionEvent e) {
-//        tablePanel.removeAll();
-//        tablePanel.updateUI();
-//        tablePanel.add(createTable(defaultTableModel, size,ProductController.createProducts()));
-//        tablePanel.updateUI();
-//        }
-//        });

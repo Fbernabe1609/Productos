@@ -44,8 +44,7 @@ public class ProductsViews {
 
         ModelProduct.startConnection();
 
-
-        tablePanel.add(createTable());
+        tablePanel.add(createTable(ProductController.createProducts()));
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,7 +52,7 @@ public class ProductsViews {
                 if (endDialogResults){
                     tablePanel.removeAll();
                     tablePanel.updateUI();
-                    tablePanel.add(createTable());
+                    tablePanel.add(createTable(ProductController.createProducts()));
                     endDialogResults = false;
                 }
             }
@@ -65,7 +64,7 @@ public class ProductsViews {
                 if (endDialogResults){
                     tablePanel.removeAll();
                     tablePanel.updateUI();
-                    tablePanel.add(createTable());
+                    tablePanel.add(createTable(ProductController.createProducts()));
                     endDialogResults = false;
                 }
             }
@@ -77,7 +76,7 @@ public class ProductsViews {
                 if (endDialogResults){
                     tablePanel.removeAll();
                     tablePanel.updateUI();
-                    tablePanel.add(createTable());
+                    tablePanel.add(createTable(ProductController.createProducts()));
                     endDialogResults = false;
                 }
             }
@@ -90,9 +89,18 @@ public class ProductsViews {
                 if (endDialogResults){
                     tablePanel.removeAll();
                     tablePanel.updateUI();
-                    tablePanel.add(createTable());
+                    tablePanel.add(createTable(products));
                     endDialogResults = false;
                 }
+            }
+        });
+
+        resetFiltersButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tablePanel.removeAll();
+                tablePanel.updateUI();
+                tablePanel.add(createTable(ProductController.createProducts()));
             }
         });
 
@@ -107,7 +115,7 @@ public class ProductsViews {
         return bodyPanel;
     }
 
-    public JScrollPane createTable() {
+    public JScrollPane createTable(ArrayList<Product> products2) {
 
         DefaultTableModel defaultTableModel =new DefaultTableModel() {
             @Override
@@ -128,12 +136,12 @@ public class ProductsViews {
         defaultTableModel.addColumn("ID Categoría");
         defaultTableModel.addColumn("Categoría");
 
-        for (int i = 0; i < ProductController.createProducts().size(); i++) {
-            defaultTableModel.addRow(new Object[] {ProductController.createProducts().get(i).getProductID(),
-                    ProductController.createProducts().get(i).getName().toUpperCase(),
-                    ProductController.createProducts().get(i).getPrice(),
-                    ProductController.createProducts().get(i).getCategoryID(),
-                    ProductController.createProducts().get(i).getCategory()
+        for (int i = 0; i <products2.size(); i++) {
+            defaultTableModel.addRow(new Object[] {products2.get(i).getProductID(),
+                    products2.get(i).getName().toUpperCase(),
+                    products2.get(i).getPrice(),
+                    products2.get(i).getCategoryID(),
+                    products2.get(i).getCategory()
             });
         }
         JTable jt = new JTable(defaultTableModel) {
@@ -151,7 +159,3 @@ public class ProductsViews {
         return new JScrollPane(jt);
     }
 }
-
-//for (int i = 0; i < size; i++) {
-//        defaultTableModel.removeRow(i);
-//        }

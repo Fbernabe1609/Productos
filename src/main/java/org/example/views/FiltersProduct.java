@@ -63,13 +63,20 @@ public class FiltersProduct extends JDialog {
                     textCheck2 = textField1.getText().substring(textField2.getText().indexOf("."));
                 }
                 if (textCheck.length() <=3 && textCheck2.length() <=3) {
-                    float price1 = Float.parseFloat(textField2.getText());
+                    float price1 = Float.parseFloat(textField1.getText());
                     float price2 = Float.parseFloat(textField2.getText());
                     if (price1 > 0.0 && price2 > 0.0) {
-                        products = ProductController.filter(price1,price2);
-                        JOptionPane.showMessageDialog(this, "Filtro aplicado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                        ProductsViews.endDialogResults = true;
-                        dispose();
+                        if (products != null) {
+                            products.clear();
+                        }
+                        if (price1 > price2) {
+                            products = ProductController.filter(price2,price1);
+                            messageExit();
+                        } else {
+                            products = ProductController.filter(price1,price2);
+                            messageExit();
+                        }
+
                     } else {
                         JOptionPane.showMessageDialog(this, "Introduzca un precio válido.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
@@ -98,5 +105,11 @@ public class FiltersProduct extends JDialog {
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
         return products;
+    }
+
+    public void messageExit() {
+        JOptionPane.showMessageDialog(this, "Filtro aplicado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        ProductsViews.endDialogResults = true;
+        dispose();
     }
 }
